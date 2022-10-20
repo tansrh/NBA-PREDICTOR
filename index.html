@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA PREDICTOR</title>
+    
+    <link rel="shortcut icon" type="image/jpg" href="https://wbdstbt.in/wp-content/uploads/2022/08/cropped-NBA-1.jpg"/>
+
+</head>
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin: 0%;
+        padding: 0%;
+        width: 100%;
+        height: 100%;
+
+        overflow-y: scroll;
+    }
+.ff{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 5em;
+   padding: 5px;  
+    background-color: black;
+    margin-bottom: 2em;   
+    
+}
+.ff img{
+    height: 100%;
+    margin-left: 1em;
+}
+.hd{
+    width: 100%;
+ display: flex;
+align-items: center;
+background-color: black;
+color: white;
+height: 4em;
+flex-wrap: wrap;
+margin-bottom: 2em;
+padding: 5px;
+}
+.hd img{
+    height: 100%;
+}
+.cont{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   justify-content: center;
+  height: fit-content;
+  flex-wrap: wrap;
+}
+.contn{
+    
+    display: flex;
+    flex-wrap: wrap;
+    height: 2em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+    background-color: black; 
+    padding: 5px;
+    margin-bottom: 2em;
+}
+
+.hd2{
+    width: 100%;
+    background-color: black;
+    height: 4em;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+    padding: 5px;
+    flex-wrap: wrap;
+}
+.hd2 img{
+    height: 55%;
+    margin: 15px;
+}
+.sel{
+    width: 80%;
+    height: 3em;
+    border: 2px solid gray;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    margin: 6px auto;
+    flex-wrap: wrap;
+}
+
+#pred, #pred1{
+    width: 8em;
+    padding: 2px;
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+    margin-left: 2em;
+}
+#pred1:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+#pred:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.cl{
+    width: 80%;
+    height: fit-content;
+    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1% auto;
+}
+.sl{
+    width: 80%;
+    height: fit-content;
+    border: 2px solid gray;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 5px auto;
+    padding: 3px;
+}
+.sl img, .sel img{
+    height: 85%;
+    width: 8%;
+   
+}
+footer{
+    position: fixed;
+    width: 100%;
+    background-color: black;
+    padding: 1%;
+    margin: 0%;
+    margin-top: 1em;
+    height: fit-content;
+    bottom: 0%;
+    text-align: center;
+    color: white;
+}
+footer:hover{
+    transform: scale(1.02);
+    
+}
+nav:hover{
+transform: scale(1.02);
+}
+
+</style>
+<body>
+    <nav class="ff"> 
+        <img src="https://cdn.nba.com/logos/leagues/logo-nba.svg">
+    </nav>
+    
+    <nav class="hd"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp1XXUZESLgX4kdl_QH_8ha2Yo3-SeAVUWog&usqp=CAU"> EASTERN CONFERENCE</nav>
+    <div class="cont" id="fl">
+        <nav class="contn">
+            
+            TEAM STANDINGS
+           <button id="pred" onclick="add()">Predict</button>
+        </nav>
+      
+    </div>
+    <nav class="hd2"><img src="https://miro.medium.com/freeze/max/525/1*qR9R4zqH2LFYkF4BBz1Upg.gif" alt="">WESTERN CONFERENCE</nav>
+    <div class="cont" id="fll">
+        <nav class="contn">
+            
+            TEAM STANDINGS
+           <button id="pred1" onclick="add1()">Predict</button>
+        </nav>
+      
+    </div>
+    <footer>
+      NBA PREDICTORS Copyright by @Tanuj
+    </footer>
+    <script>
+        function add(){
+            var btn=document.getElementById("pred");
+            btn.style.display="none";
+            for(var i=0; i<15; i++){
+                const bx=document.createElement("div");
+                const bt=document.createElement("button");
+                
+                bt.style.width="10em";
+                bt.style.padding="1em";
+
+                bt.innerHTML=`For Rank ${i+1}`;
+              
+                bt.addEventListener("mouseenter", hvr(bt));
+                    
+                
+                const x=document.createElement("div");
+                bx.setAttribute("class", "sel");
+                
+                x.setAttribute("class", "cl");
+                document.getElementById("fl").appendChild(bx);
+                bx.appendChild(bt);
+                document.getElementById("fl").appendChild(x);
+                bt.onclick=function(){
+                    bt.style.display="none";
+                    sub(x, bx)};
+                    
+
+                
+            }
+        }
+       
+        
+        function add1(){
+            var btn=document.getElementById("pred1");
+            btn.style.display="none";
+            for(var i=0; i<15; i++){
+                const bx=document.createElement("div");
+                const bt=document.createElement("button");
+                bt.style.width="10em";
+                bt.style.padding="1em";
+                bt.innerHTML=`For Rank ${i+1}`;
+                bt.addEventListener("mouseover", hvr(bt));
+                const x=document.createElement("div");
+                bx.setAttribute("class", "sel");
+                x.setAttribute("class", "cl");
+                document.getElementById("fll").appendChild(bx);
+                bx.appendChild(bt);
+                document.getElementById("fll").appendChild(x);
+                bt.onclick=function(){
+                    bt.style.display="none";
+                    sub1(x, bx)};
+                    
+
+                
+            }
+        }
+        
+        
+        function sub(x, bx){
+            
+            for(var i=0; i<15; i++){
+            const sx=document.createElement("div");
+                sx.setAttribute("class", "sl");
+               
+                
+                if(i==0){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612738/global/L/logo.svg'>";
+                    sx.innerHTML+="BOSTON CLETICS";
+                }
+                else if(i==1){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612751/global/L/logo.svg'>";
+                    sx.innerHTML+="BROOKLYN NETS";
+                }
+                else if(i==2){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612752/global/L/logo.svg'>";
+                    sx.innerHTML+="NEW YORK KNICKS";
+                }
+                else if(i==3){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612755/global/L/logo.svg'>";
+                    sx.innerHTML+="PHILADELPHIA 76ERS";
+                }
+                else if(i==4){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612761/global/L/logo.svg'>";
+                    sx.innerHTML+="TORONTO RAPTORS";
+                }
+                else if(i==5){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612741/global/L/logo.svg'>";
+                    sx.innerHTML+="CHICAGO BULLS";
+                }
+                else if(i==6){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612739/global/L/logo.svg'>";
+                    sx.innerHTML+="CLEVELAND CAVELIERS";
+                }
+                else if(i==7){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612765/global/L/logo.svg'>";
+                    sx.innerHTML+="DETROIT PISTONS";
+                }
+                else if(i==8){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612754/global/L/logo.svg'>";
+                    sx.innerHTML+="INDIANA PACERS";
+                }
+                else if(i==9){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612749/global/L/logo.svg'>";
+                    sx.innerHTML+="MILWAUKEE BUCKS";
+                }
+                else if(i==10){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612737/global/L/logo.svg'>";
+                    sx.innerHTML+="ATLANTA HAWKS";
+                }
+                else if(i==11){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612766/global/L/logo.svg'>";
+                    sx.innerHTML+="CHARLOTTE HORNETS";
+                }
+                else if(i==12){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612748/global/L/logo.svg'>";
+                    sx.innerHTML+="MIAMI HEAT";
+                }
+                else if(i==13){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612753/global/L/logo.svg'>";
+                    sx.innerHTML+="ORLANDO MAGIC";
+                }
+                else if(i==14){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612764/global/L/logo.svg'>";
+                    sx.innerHTML+="WASHINGTON WIZARDS";
+                }
+                x.appendChild(sx);
+                sx.addEventListener("mouseover", hvr(sx));
+                sx.onclick=function(){
+                    ss(bx, sx, x);
+                }
+                    
+                
+        }
+    }
+    
+    function sub1(x, bx){
+            
+            for(var i=0; i<15; i++){
+            const sx=document.createElement("div");
+                sx.setAttribute("class", "sl");
+                
+                
+                if(i==0){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612743/global/L/logo.svg'>";
+                    sx.innerHTML+="DENVER NUGGETS";
+                }
+                else if(i==1){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612750/global/L/logo.svg'>";
+                    sx.innerHTML+="MINNESOTA TIMBERWOLVES";
+                }
+                else if(i==2){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612760/global/L/logo.svg'>";
+                    sx.innerHTML+="OKLAHOMA CITY THUNDER";
+                }
+                else if(i==3){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612757/global/L/logo.svg'>";
+                    sx.innerHTML+="PORTLAND TRAIL BLAZERS";
+                }
+                else if(i==4){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612762/global/L/logo.svg'>";
+                    sx.innerHTML+="UTAH JAZZ";
+                }
+                else if(i==5){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612744/global/L/logo.svg'>";
+                    sx.innerHTML+="GOLDEN STATE WARRIORS";
+                }
+                else if(i==6){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612746/global/L/logo.svg'>";
+                    sx.innerHTML+="LA CLIPPERS";
+                }
+                else if(i==7){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612747/global/L/logo.svg'>";
+                    sx.innerHTML+="LOS ANGELES LAKERS";
+                }
+                else if(i==8){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612756/global/L/logo.svg'>";
+                    sx.innerHTML+="PHONEIX SUNS";
+                }
+                else if(i==9){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612758/global/L/logo.svg'>";
+                    sx.innerHTML+="SACRAMENTO KINGS";
+                }
+                else if(i==10){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612742/global/L/logo.svg'>";
+                    sx.innerHTML+="DALLAS MAVERICKS";
+                }
+                else if(i==11){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612745/global/L/logo.svg'>";
+                    sx.innerHTML+="HOUSTON ROCKETS";
+                }
+                else if(i==12){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612763/global/L/logo.svg'>";
+                    sx.innerHTML+="MEMPHIS GRIZLLIES";
+                }
+                else if(i==13){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612740/global/L/logo.svg'>";
+                    sx.innerHTML+="NEW ORLEANS PELICANS";
+                }
+                else if(i==14){
+                    sx.innerHTML="<img src='https://cdn.nba.com/logos/nba/1610612759/global/L/logo.svg'>";
+                    sx.innerHTML+="SAN ANTONIO SPURS";
+                }
+                x.appendChild(sx);
+                sx.addEventListener("mouseover", hvr(sx));
+                sx.onclick=function(){
+                    ss(bx, sx, x);
+                }
+                    
+                
+        }
+    }
+    function ss(bx, sx, x){
+        bx.innerHTML=sx.innerHTML;
+        x.style.display="none";
+      
+    }
+    function hvr(bt){
+            bt.style.cursor="pointer";
+            
+        }
+    </script>
+</body>
+</html>
